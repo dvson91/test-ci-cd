@@ -9,6 +9,11 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://*:{port}");
+
+app.MapGet("/", () => "Hello World!");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
